@@ -9,7 +9,7 @@ import { User } from './../models/user.model';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private apiEndpoint = environment.apiEndpoint;
+  private API_ENDPOINT = environment.apiEndpoint;
   private httpHeaders = new HttpHeaders();
   user: User;
   isAuthenticated: boolean;
@@ -19,7 +19,7 @@ export class AuthenticationService {
   }
 
   signup(username: String, email: String, password: String): Observable<any> {
-    return this.http.post<any>(`${this.apiEndpoint}/users/register`, { name: username, email: email, password: password },
+    return this.http.post<any>(`${this.API_ENDPOINT}/users/register`, { name: username, email: email, password: password },
       {
         headers: this.httpHeaders
       }
@@ -28,14 +28,16 @@ export class AuthenticationService {
         // login successful if there's a jwt token in the response
         if (res && res.success) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('loggedUser', JSON.stringify('theusertoken'));
+            localStorage.setItem('loggedUser', JSON.stringify('theusertoken'));
+            localStorage.setItem('isAdmin', res.data.admin);
+            localStorage.setItem('userId', res.data._id);
         }
         return res;
       }));
   }
 
   login(username: String, password: String) {
-    return this.http.post(`${this.apiEndpoint}/users/login`, { email: username, password: password })
+    return this.http.post(`${this.API_ENDPOINT}/users/login`, { email: username, password: password })
       .pipe(
         map((res: Response) => {
           // login successful if there's a jwt token in the response

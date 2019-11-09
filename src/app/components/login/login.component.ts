@@ -66,9 +66,11 @@ export class LoginComponent implements OnInit {
       .subscribe(
         data => {
           if (data.success) {
-            if (!isUndefined(data.data))
+            if (!isUndefined(data.data)){
               console.log(data.data);
-            this.router.navigate(['/home']);
+              this.router.navigate(['/home']);
+            }
+              
           }
         },
         error => {

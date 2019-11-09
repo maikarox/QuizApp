@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
             message: "Fields content cannot be empty"
         });
     }
-    const { questionBody, answers } = req.body;
+    const { questionBody, answers, published } = req.body;
 
     //response isCorrect
     const answersList = JSON.parse(answers);

@@ -1,1 +1,36 @@
-<p>quiz works!</p>
+<div class="container card-container">
+    <div class="card">
+        <div class="row">
+            <div class="column">
+                <div class="home text-center">
+                    <h3 class="row title">{{current?.questionBody}}</h3>
+                    <p class="row text-center">Click the correct answer.</p>
+                </div>
+
+                <form>
+                    <div *ngFor="let answer of current?.answers">
+                        <label>
+                            <input type="radio" name="name" (click)="changeSelected(answer.isCorrect)"
+                                [value]="answer._id">
+                            {{answer.response}} </label>
+                    </div>
+                    <div *ngIf="isSubmitted[currentIndex] && !selected[currentIndex]">
+                        Please select either value
+                    </div>
+                    <button type="submit" (click)="submitForm()">Submit</button>
+                </form>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-primary" *ngIf="currentIndex"
+                            (click)="previous()">Prev</button>
+                    </div>
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-primary" *ngIf="thereIsNext()"
+                            (click)="next()">Next</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

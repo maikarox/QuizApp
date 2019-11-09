@@ -10,14 +10,19 @@ import { AuthenticationService } from 'src/app/shared/providers/authentication.s
 })
 export class HomeComponent implements OnInit {
   user: User;
-  constructor(private auth: AuthGuardService, private authService: AuthenticationService) { 
+  pannelAccess: boolean;
+  constructor(private authGuard: AuthGuardService, private authService: AuthenticationService) { 
     this.user = this.authService.user;
+    this.canAccessPanel();
   }
 
   ngOnInit() {
     
   }
   isAutenthicated() : boolean{
-    return this.auth.canActivate();
+    return this.authGuard.canActivate();
+  }
+  canAccessPanel() {
+    this.pannelAccess = this.authGuard.canActivate() && this.user.admin;
   }
 }

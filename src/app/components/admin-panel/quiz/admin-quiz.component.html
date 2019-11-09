@@ -1,0 +1,26 @@
+<div class="container card-container">
+    <div class="card" *ngFor="let question of questions">
+        <div class="row">
+            <div class="column">
+                <div >
+                    <div class="card-header">
+                        {{question.questionBody}}
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <form>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" [(ngModel)]="question.published" class="custom-control-input"
+                                        id="customCheck" name="example1">
+                                    <label class="custom-control-label" for="customCheck">Published</label>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

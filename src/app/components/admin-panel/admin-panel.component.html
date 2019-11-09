@@ -1,1 +1,10 @@
-<p>admin-panel works!</p>
+<div class="container">
+    <mat-tab-group animationDuration="100ms">
+        <mat-tab label="Questions">
+            <app-quiz-admin [questions]="questionList"></app-quiz-admin>
+        </mat-tab>
+        <mat-tab label="Users">
+            <app-users></app-users>
+        </mat-tab>
+    </mat-tab-group>
+</div>
