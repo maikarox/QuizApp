@@ -12,10 +12,9 @@ export class AuthenticationService {
   private apiEndpoint = environment.apiEndpoint;
   private httpHeaders = new HttpHeaders();
   user: User;
+  isAuthenticated: boolean;
+
   constructor(private http: HttpClient) {
-    this.httpHeaders.set('Access-Control-Allow-Origin', '*');
-    this.httpHeaders.set('Access-Control-Allow-Methods', '*');
-    this.httpHeaders.set('Access-Control-Max-Age', '*');
     this.httpHeaders.set('Content-Type', 'application/json');
   }
 

@@ -1,5 +1,7 @@
+import { User } from './../../shared/models/user.model';
 import { AuthGuardService } from './../../shared/providers/auth-guard.service';
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/shared/providers/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -7,13 +9,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor(private authGuardService: AuthGuardService) { 
-    this.authGuardService.canActivate();
+  user: User;
+  constructor(private auth: AuthGuardService, private authService: AuthenticationService) { 
+    this.user = this.authService.user;
   }
 
   ngOnInit() {
     
   }
-
+  isAutenthicated() : boolean{
+    return this.auth.canActivate();
+  }
 }

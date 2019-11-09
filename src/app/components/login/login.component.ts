@@ -14,8 +14,9 @@ export class LoginComponent implements OnInit {
   user: User;
   loading: boolean;
   submitted: boolean = false;
-  action: String = 'login';
   error: String = '';
+  action: String = 'Login'
+  other: String = 'Signup'
   isSignUp: boolean = false;
 
 
@@ -25,62 +26,71 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.user = new User(
-       '',
-       '',
-       '',
-       '',
+      '',
+      '',
+      '',
+      '',
       false,
-      null,    
+      null,
     )
   }
 
   ngOnInit() {
-     // reset login status
-     //this.authenticationService.logout();
+    // reset login status
+    //this.authenticationService.logout();
   }
-  enter(){
+
+  changeAction() {
+    this.isSignUp = !this.isSignUp
+    this.action = (this.isSignUp) ? 'Signup' : 'Login';
+    this.other = (this.isSignUp) ? 'Login' : 'Signup';
+  }
+
+  enter() {
     this.submitted = true;
-    
-    if(!this.isSignUp){
-      if(this.user.email !== '' && this.user.password !== ''){
+
+    if (!this.isSignUp) {
+      if (this.user.email !== '' && this.user.password !== '') {
         this.login();
       }
-    }else{
-
+    } else {
+      if (this.user.email !== '' && this.user.name !== '' && this.user.password !== '') {
+        this.signUp();
+      }
     }
   }
 
-  signUp(){
+  signUp() {
     this.loading = true;
     this.authenticationService.signup(this.user.name, this.user.email, this.user.password)
-        .subscribe(
-            data => {
-                if(data.success){
-                  if(!isUndefined(data.data))
-                  console.log(data.data);
-                  this.router.navigate(['/home']);
-                }     
-            },
-            error => {
-                this.error = error
-                this.loading = false;
-            });
+      .subscribe(
+        data => {
+          if (data.success) {
+            if (!isUndefined(data.data))
+              console.log(data.data);
+            this.router.navigate(['/home']);
+          }
+        },
+        error => {
+          this.error = error
+          this.loading = false;
+        });
   }
   login() {
     this.loading = true;
     this.authenticationService.login(this.user.email, this.user.password)
-        .subscribe(
-            data => {
-                if(data.success){
-                  if(!isUndefined(data.data)){
-                    console.log(data.data);
-                    this.router.navigate(['/home']);
-                  }       
-                }     
-            },
-            error => {
-                this.error = error
-                this.loading = false;
-            });
+      .subscribe(
+        data => {
+          if (data.success) {
+            if (!isUndefined(data.data)) {
+              console.log(data.data);
+              this.router.navigate(['/home']);
+            }
+          }
+        },
+        error => {
+          this.error = error
+          this.loading = false;
+        });
   }
 }

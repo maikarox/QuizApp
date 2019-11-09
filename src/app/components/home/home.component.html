@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="container card-container">
+    <div class="card">
+        <div class="row">
+            <div class="column">
+                <div class="home text-center">
+                    <h3 class="row title">Would you like to test yourself?</h3>
+                    <p class="row text-center">Click the Start Quiz button below to start the quiz.</p>
+                    <button *ngIf="isAutenthicated()" class="btn-start btn-primary" routerLink="/quiz">START
+                        QUIZ</button>
+                    <button *ngIf="!isAutenthicated()" class="btn-start btn-primary" [routerLink]="['/','login']">LOG IN
+                        TO TAKE
+                        QUIZ</button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
