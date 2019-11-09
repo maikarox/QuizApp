@@ -14,8 +14,15 @@
                                 [value]="answer._id">
                             {{answer.response}} </label>
                     </div>
-                    <div *ngIf="isSubmitted[currentIndex] && !selected[currentIndex]">
-                        Please select either value
+                    <div *ngIf="isSubmitted[currentIndex] && !selected[currentIndex]" class="help-block">
+                        <div class="alert alert-danger">
+                            <strong>Wrong answer</strong>
+                        </div>
+                    </div>
+                    <div *ngIf="isSubmitted[currentIndex] && selected[currentIndex]" class="help-block">
+                        <div class="alert alert-success">
+                            <strong>Correct answer</strong>
+                        </div>
                     </div>
                     <button type="submit" (click)="submitForm()">Submit</button>
                 </form>
