@@ -19,12 +19,7 @@ let User = new Schema({
     password: {
         type: String,
         required: true,
-        minlength: 6,
         trim: true
-    },
-    accessToken: {
-        type: String,
-        unique: true
     },
     admin: {
         type: Boolean,

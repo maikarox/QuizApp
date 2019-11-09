@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const thereIsOneCorrectAnswer = (answers)=>{
+const thereIsOneCorrectAnswer = (answers) => {
     const correctAnswer = answers.find((resp) => {
         return resp.isCorrect === true
     });
@@ -14,21 +14,12 @@ let Question = new Schema({
         type: String,
         required: true
     },
-    answers: {
-        type: [{
-            response: {
-                type: String,
-                required: true
-            },
-            isCorrect: {
-                type: Boolean,
-                required: true
-            }
-        }],
-        minlength: 2,
-        required(){}
+    answers: Array,
+    published: {
+        type: Boolean,
+        default: false
     }
-},{
+}, {
     collection: 'questions'
 });
 
