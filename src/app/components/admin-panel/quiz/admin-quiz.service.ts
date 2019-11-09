@@ -1,3 +1,4 @@
+import { Answer } from './../../../shared/models/answer.model';
 import { environment } from '../../../../environments/environment';
 import { AuthGuardService } from '../../../shared/providers/auth-guard.service';
 import { Question } from '../../../shared/models/question.model';
@@ -38,4 +39,52 @@ export class AdminQuizService {
         return res;
       }));
   }
+
+  /**
+   *  @name getQuiz()
+   *  @param Question
+   *  Add question
+   */
+  addQuiz(question: Question){
+    const uid = localStorage.getItem('userId');
+    return this.http.post<any>(`${this.API_ENDPOINT}/quiz/add`, 
+      { 
+        _id: uid, 
+        questionBody: question.questionBody, 
+        published: question.published,
+        answers: question.answers      
+      },
+      {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      }
+    ).pipe(
+      map((res: Response) => {
+        return res;
+      }));
+  }
+  
+  /**
+   *  @name updateQuiz()
+   *  @param Question
+   *  Update question
+   */
+  updateQuiz(question: Question){
+    const uid = localStorage.getItem('userId');
+    return this.http.put<any>(`${this.API_ENDPOINT}/quiz/update?id${question._id}`, 
+    { 
+      _id: uid, 
+      questionBody: question.questionBody, 
+      published: question.published,
+      answers: question.answers      
+    },
+      {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      }
+    ).pipe(
+      map((res: Response) => {
+        return res;
+      }));
+  }
+
+  
 }

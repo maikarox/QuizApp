@@ -9,4 +9,5 @@ router.post('/all', validateAdmin, require('./getAll'));
 router.post('/add', validateAdmin, require('./add'));
 router.put('/update/:id', validateAdmin, require('./update'));
 router.get(':id', findIfUser, require('./getOne'));
+router.post(':id', findIfUser, require('./getOne'));
 module.exports = router;

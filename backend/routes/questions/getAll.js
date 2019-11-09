@@ -3,7 +3,7 @@ module.exports = async(req, res, next) => {
   
     await Question
       .find()
-      .select({ questionBody: 1, answers: 1 })
+      .select({ questionBody: 1, answers: 1, published: 1 })
       .then((questions)=>{
         return res.status(200).json({ success: true, data: questions});
       }).catch((err)=> {
