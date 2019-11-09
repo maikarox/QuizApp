@@ -28,6 +28,7 @@ export class LoginComponent implements OnInit {
        '',
        '',
        '',
+       '',
       false,
       null,    
     )
@@ -71,9 +72,10 @@ export class LoginComponent implements OnInit {
         .subscribe(
             data => {
                 if(data.success){
-                  if(!isUndefined(data.data))
-                  console.log(data.data);
-                  this.router.navigate(['/home']);
+                  if(!isUndefined(data.data)){
+                    console.log(data.data);
+                    this.router.navigate(['/home']);
+                  }       
                 }     
             },
             error => {

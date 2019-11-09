@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
         } else {
             const decryptedPass = cryptr.decrypt(user.password);
             if(decryptedPass !== password) return res.status(401).json({success: false, message: 'Incorrect password.'});
-            res.status(200).json({success: true, message: 'Log in successfully.', data: { user }});
+            res.status(200).json({success: true, message: 'Log in successfully.', data:  user });
         }
     });
 }
