@@ -24,8 +24,8 @@ export class AuthGuardService {
    * 
    */
   isAdmin() {
-    if (this.auth.user.admin) {
-      // logged in so return true
+    if (localStorage.getItem('isAdmin')) {
+      // If admin so return true
       return true;
     }
 

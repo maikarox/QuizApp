@@ -25,11 +25,15 @@ export class AuthenticationService {
       }
     ).pipe(
       map((res: Response) => {
-        // login successful if there's a jwt token in the response
+        // signup successful if there's a jwt token in the response
         if (res && res.success) {
           // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('loggedUser', JSON.stringify('theusertoken'));
-            localStorage.setItem('isAdmin', res.data.admin);
+            if(res.data.admin){
+              localStorage.setItem('isAdmin', res.data.admin);
+            }else{
+              localStorage.removeItem('isAdmin');
+            }
             localStorage.setItem('userId', res.data._id);
         }
         return res;
@@ -52,7 +56,12 @@ export class AuthenticationService {
             );
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('loggedUser', JSON.stringify('theusertoken'));
-            localStorage.setItem('isAdmin', res.data.admin);
+            if(res.data.admin){
+              localStorage.setItem('isAdmin', res.data.admin);
+            }else{
+              localStorage.removeItem('isAdmin');
+            }
+            
             localStorage.setItem('userId', res.data._id);
           }
           return res;

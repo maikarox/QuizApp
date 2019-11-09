@@ -23,6 +23,6 @@ export class HomeComponent implements OnInit {
     return this.authGuard.canActivate();
   }
   canAccessPanel() {
-    this.pannelAccess = this.authGuard.canActivate() && this.user.admin;
+    this.pannelAccess = this.authGuard.canActivate() && this.authGuard.isAdmin();
   }
 }
