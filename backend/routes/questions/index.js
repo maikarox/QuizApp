@@ -1,11 +1,11 @@
 const { Router } = require('express');
 const router = Router();
+const {findIfUser, validateAdmin} = require('../../utils/helpers');
 
-router.get('/', require('./getPublished'));
-router.get('/id/:id', require('./getOne'));
+router.get('/', findIfUser, require('./getPublished'));
+router.get('/id/:id', findIfUser, require('./getOne'));
 
-// If admin
-router.get('/all', require('./getAll'));
-router.post('/add', require('./add'));
-router.put('/update/:id', require('./update'));
+router.get('/all', validateAdmin, require('./getAll'));
+router.post('/add', validateAdmin, require('./add'));
+router.put('/update/:id', validateAdmin, require('./update'));
 module.exports = router;

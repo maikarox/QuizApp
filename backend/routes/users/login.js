@@ -1,10 +1,10 @@
 // User login
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     const Cryptr = require('cryptr');
     const cryptr = new Cryptr('secrectPass');
     let User = require('../../models/User');
     const { email, password } = req.body;
-    User.findOne({'email': email}, (err, user) =>{
+    await User.findOne({'email': email}, (err, user) =>{
         if(err) return next(err);
         if(user === null){
             return res.status(404).json({success: false, message: 'The email is not from a registered user.'});

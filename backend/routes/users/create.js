@@ -1,5 +1,5 @@
 // Player Sign Up
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     const Cryptr = require('cryptr');
     let User = require('../../models/User');
     // If there is not body params returns 400
@@ -14,7 +14,7 @@ module.exports = (req, res, next) => {
 
     const cryptr = new Cryptr('secrectPass');
     const encryptedPass = cryptr.encrypt(password);
-    User.create({name: name, email: email, password: encryptedPass, admin: false }, (err, user) => {
+    await User.create({name: name, email: email, password: encryptedPass, admin: false }, (err, user) => {
         if(err){
             return next(err);
         }else{

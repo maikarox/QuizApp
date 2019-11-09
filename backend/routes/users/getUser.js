@@ -9,18 +9,14 @@ module.exports = async (req, res, next) => {
         });
     }
     // Find user and update it
-    await User.findByIdAndUpdate(req.params.id,
-         { 
-           name: req.body.name, 
-           email: req.body.email 
-        }, { new: true }).then(user => {
+    await User.findById(req.body._id).then(user => {
         if(!user) {
             return res.status(404).send({
                 success: false,
                 message: "User not found" + req.params.id
             });            
         } else{
-            res.status(200).json({success: true, message: 'User updated', data: { user }});
+            res.status(200).json({success: true, message: 'User Found', data: { user }});
         }
         
     }).catch(err => {
@@ -37,4 +33,4 @@ module.exports = async (req, res, next) => {
             message: "Error retrieving user" + req.params.noteId
         });
     })
-}
+};

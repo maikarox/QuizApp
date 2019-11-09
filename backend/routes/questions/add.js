@@ -13,7 +13,7 @@ module.exports = async (req, res, next) => {
 
     //response isCorrect
     const answersList = JSON.parse(answers);
-    Question.create({questionBody: questionBody, published: published, answers: answersList }, (err, question) => {
+    await Question.create({questionBody: questionBody, published: published, answers: answersList }, (err, question) => {
         if(err){
             return next(err);
         }else{

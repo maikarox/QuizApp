@@ -1,5 +1,5 @@
 // Update User
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     let Question = require('../../models/Question');
     // If there is no content return 400
     if(!req.body) {
@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
         });
     }
     // Find user and update it
-    Question.findByIdAndUpdate(req.params.id,
+    await Question.findByIdAndUpdate(req.params.id,
          { 
             questionBody: req.body.questionBody, 
             published: require.body.published,
