@@ -43,7 +43,9 @@ export class AdminPanelComponent implements OnInit {
   }
   addQuestion(){
     const thereIsCorrect = this.thereIsOneCorrectAnswer(this.newQuestion);
-    if(this.newQuestion.questionBody !== '' && !isUndefined(thereIsCorrect) && thereIsCorrect.length > 0){
+    this.submitted = true;
+    this.oneCorrect = !isUndefined(thereIsCorrect) && thereIsCorrect.length > 0;
+    if(this.newQuestion.questionBody !== '' && this.oneCorrect){
       this.loading = true;
       this.quizService.addQuiz(this.newQuestion).subscribe(data => {
         if (data.success) {

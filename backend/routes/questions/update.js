@@ -9,10 +9,10 @@ module.exports = async (req, res, next) => {
         });
     }
     // Find user and update it
-    await Question.findByIdAndUpdate(req.params.id,
+    await Question.findByIdAndUpdate(req.body.id,
          { 
             questionBody: req.body.questionBody, 
-            published: require.body.published,
+            published: req.body.published,
             answers: JSON.parse(req.body.answers) 
         }, { new: true }).then(question => {
         if(!question) {
