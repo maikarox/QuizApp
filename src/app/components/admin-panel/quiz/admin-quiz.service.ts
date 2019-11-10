@@ -46,13 +46,14 @@ export class AdminQuizService {
    *  Add question
    */
   addQuiz(question: Question){
+    console.log('pasa por aqui servicio');
     const uid = localStorage.getItem('userId');
     return this.http.post<any>(`${this.API_ENDPOINT}/quiz/add`, 
       { 
         _id: uid, 
         questionBody: question.questionBody, 
         published: question.published,
-        answers: question.answers      
+        answers: JSON.stringify(question.answers)      
       },
       {
         headers: new HttpHeaders().set('Content-Type', 'application/json')
@@ -62,7 +63,7 @@ export class AdminQuizService {
         return res;
       }));
   }
-  
+
   /**
    *  @name updateQuiz()
    *  @param Question

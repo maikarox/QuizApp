@@ -13,7 +13,8 @@ import { UsersComponent } from './components/admin-panel/users/users.component';
 import { LoginComponent } from './components/login/login.component';
 import {
   MatCardModule,
-  MatTabsModule
+  MatTabsModule,
+  MatIconModule
 } from '@angular/material';
 
 @NgModule({
