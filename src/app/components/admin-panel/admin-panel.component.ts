@@ -1,3 +1,4 @@
+import { AuthGuardService } from './../../shared/providers/auth-guard.service';
 import { UsersService } from './users/users.service';
 import { AdminQuizService } from './quiz/admin-quiz.service';
 import { Question } from './../../shared/models/question.model';
@@ -26,8 +27,11 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(
     private quizService: AdminQuizService, 
-    private userService: UsersService 
+    private userService: UsersService,
+    private authGuard: AuthGuardService
   ) { 
+    this.authGuard.canActivate();
+    this.authGuard.isAdmin();
     this.quizService.getQuiz().subscribe(data => {
       if (data.success) {
         if (!isUndefined(data.data)){
