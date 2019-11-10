@@ -26,8 +26,9 @@ export class AdminQuizComponent implements OnInit {
       this.loading = true;
       this.quizService.updateQuiz(question).subscribe(data => {
         if (data.success) {
-          if (!isUndefined(data.data)) {
-            this.loading = false;
+          if (!isUndefined(data.data)) {      
+            this.loading = false;  
+            alert('Updated!');  
           }
         }
       },

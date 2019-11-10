@@ -55,6 +55,7 @@ export class AdminPanelComponent implements OnInit {
             this.submitted = false;
             this.questionList.unshift(data.data);
             this.initNewQuestionForm();
+            alert('Created!');  
           }
         }
       },

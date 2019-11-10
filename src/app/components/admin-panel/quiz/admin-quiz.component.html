@@ -10,9 +10,11 @@
                         <div class="row">
                             <form>
                                 <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" [(ngModel)]="question.published" class="custom-control-input"
-                                        id="customCheck" name="example1">
-                                    <label class="custom-control-label" for="customCheck">Published</label>
+                                        <div class="checkbox">
+                                                <label><input type="checkbox" [(ngModel)]="question.published"
+                                                        [ngModelOptions]="{standalone: true}"> Published</label>
+                                            </div>
+  
                                 </div>
                             </form>
                         </div>
