@@ -4,7 +4,12 @@
             <div class="column">
                 <div>
                     <div class="card-header">
-                        <input [(ngModel)]="question.questionBody" [value]="question.questionBody"/>
+                        <div class="row">
+                            <label for="questionBody">Question:</label>
+                        </div>
+                        <div class="row">
+                            <textarea class="q-text-area" [(ngModel)]="question.questionBody" [value]="question.questionBody"></textarea>
+                        </div>           
                     </div>
                     <div class="card-body">
                         <div class="row">

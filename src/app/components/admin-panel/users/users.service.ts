@@ -13,6 +13,7 @@ import { map } from 'rxjs/operators';
 export class UsersService {
   private API_ENDPOINT = environment.apiEndpoint;
   userList: User[] = [];
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
   constructor(
     private authGuard: AuthGuardService, 
     private http: HttpClient) { }

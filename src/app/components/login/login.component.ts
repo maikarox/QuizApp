@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   action: String = 'Login'
   other: String = 'Signup'
   isSignUp: boolean = false;
-
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"; 
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -48,15 +48,18 @@ export class LoginComponent implements OnInit {
 
   enter() {
     this.submitted = true;
-
-    if (!this.isSignUp) {
-      if (this.user.email !== '' && this.user.password !== '') {
-        this.login();
+    if(this.user.email !== '' && this.user.email.match(this.emailPattern)){
+      if (!this.isSignUp) {
+        if (this.user.email !== '' && this.user.password !== '') {
+          this.login();
+        }
+      } else {
+        if (this.user.email !== '' && this.user.name !== '' && this.user.password !== '') {
+          this.signUp();
+        }
       }
-    } else {
-      if (this.user.email !== '' && this.user.name !== '' && this.user.password !== '') {
-        this.signUp();
-      }
+    }else{
+      alert('Not a valid email');
     }
   }
 
