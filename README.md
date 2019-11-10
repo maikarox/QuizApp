@@ -4,9 +4,10 @@ Simple Quizapp using MEAN stack with [Angular CLI](https://github.com/angular/an
 ## How to run the app
 
 ### Node, Express, MongoDB Backend
-Start the MongoDB Database: `mongod`
-`cd backend && npm install`
-Run `nodemon index.js` to start the server.The app will automatically reload if you change any of the source files. 
+Start the MongoDB Database:
+```mongod```
+```cd backend && npm install```
+Run `nodemon index.js` to start the server.The app will automatically reload if you change any of the source files. The server will listen on http://localhost/4000/api
 
 ### Angular Frontend
 Run `npm install` on the main directory to install Angular necesary npm packages
