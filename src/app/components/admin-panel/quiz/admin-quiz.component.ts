@@ -42,6 +42,7 @@ export class AdminQuizComponent implements OnInit {
     }
     
   }
+  
   thereIsOneCorrectAnswer(question: Question){
     return question.answers.filter((a) => {
       return a.isCorrect === true;

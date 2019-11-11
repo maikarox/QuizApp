@@ -38,4 +38,28 @@ export class UsersService {
         return res;
       }));
   }
+
+  /**
+   *  @name updateUser()
+   *  @param User
+   *  Update user
+   */
+  updateUser(userToUpdate: User){
+    const uid = localStorage.getItem('userId');
+    return this.http.put<any>(`${this.API_ENDPOINT}/users/update?id=${userToUpdate._id}`, 
+    { 
+      _id: uid, 
+      id: userToUpdate._id,
+      name: userToUpdate.name, 
+      email: userToUpdate.email,
+      admin: userToUpdate.admin      
+    },
+      {
+        headers: new HttpHeaders().set('Content-Type', 'application/json')
+      }
+    ).pipe(
+      map((res: Response) => {
+        return res;
+      }));
+  }
 }

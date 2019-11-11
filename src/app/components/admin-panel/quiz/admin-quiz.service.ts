@@ -70,7 +70,7 @@ export class AdminQuizService {
    */
   updateQuiz(question: Question){
     const uid = localStorage.getItem('userId');
-    return this.http.put<any>(`${this.API_ENDPOINT}/quiz/update/?id${question._id}`, 
+    return this.http.put<any>(`${this.API_ENDPOINT}/quiz/update?id=${question._id}`, 
     { 
       _id: uid, 
       id: question._id,

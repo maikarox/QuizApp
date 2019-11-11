@@ -11,5 +11,5 @@ router.post('/add', validateAdmin, require('./add'));
 router.put('/update', validateAdmin, require('./update'));
 router.put('/delete', validateAdmin, require('./delete'));
 router.get(':id', findIfUser, require('./getOne'));
-//router.post(':id', findIfUser, require('./getOne'));
+router.post(':id', findIfUser, require('./getOne'));
 module.exports = router;
