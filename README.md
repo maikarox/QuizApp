@@ -34,4 +34,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## TODO
 Admin panel:
 - Delete Questions
-- Add, edit and delete users
+- Add and delete users
