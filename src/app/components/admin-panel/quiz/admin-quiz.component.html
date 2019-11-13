@@ -1,29 +1,40 @@
 <div class="container card-container">
     <div class="card" *ngFor="let question of questions">
         <div class="row">
-            <div class="column">
-                <div>
+            <div class="col-md-12">
+                <div class="form-group">
                     <div class="card-header">
                         <div class="row">
-                            <label for="questionBody">Question:</label>
+                            <div class="col-md-6">
+                                <label for="questionBody">Question:</label>
+                            </div>
+
                         </div>
                         <div class="row">
-                            <textarea class="q-text-area" [(ngModel)]="question.questionBody" [value]="question.questionBody"></textarea>
-                        </div>           
+                            <div class="col-md-12">
+                                <textarea class="q-text-area" [(ngModel)]="question.questionBody"
+                                    [value]="question.questionBody"></textarea>
+                            </div>
+
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <form>
-                                <div class="custom-control custom-checkbox">
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="custom-control custom-checkbox">
                                         <div class="checkbox">
-                                                <label><input type="checkbox" [(ngModel)]="question.published"
-                                                        [ngModelOptions]="{standalone: true}"> Published</label>
-                                            </div>
-  
-                                </div>
-                            </form>
+                                            <label><input type="checkbox" [(ngModel)]="question.published"
+                                                    [ngModelOptions]="{standalone: true}"> Published</label>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
                         <div class="row" *ngFor="let answer of question.answers">
+                            <div class="col-md-12 col-sm-6">
                                 <label for="answer">Answer:</label>
                                 <input type="answer" class="form-control" id="answer" [(ngModel)]="answer.response"
                                     [ngModelOptions]="{standalone: true}">
@@ -32,16 +43,17 @@
                                             [ngModelOptions]="{standalone: true}"> Is correct:</label>
                                 </div>
                             </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-primary" (click)="updateQuestion(question)">Edit</button>
-                            <img *ngIf="loading"
-                                src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                        </div>
+                        <div class="card-footer">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-primary"
+                                    (click)="updateQuestion(question)">Edit</button>
+                                <img *ngIf="loading"
+                                    src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>

@@ -1,43 +1,47 @@
 <div class="container card-container">
     <div class="card">
-        <div class="row">
-            <div class="column">
-                <div class="home text-center">
-                    <h3 class="row title">{{current?.questionBody}}</h3>
-                    <p class="row text-center">Click the correct answer.</p>
+        <div class="row card-body ">
+            <div class="col-md-12">
+                <div class="row text-center">
+                    <div>
+                        <h3 class="title">{{current?.questionBody}}</h3>
+                        <p>Choose the correct answer.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-6">
+                        <form>
+                            <div *ngFor="let answer of current?.answers">
+                                <label>
+                                    <input type="radio" name="name" (click)="changeSelected(answer.isCorrect)"
+                                        [value]="answer._id">
+                                    {{answer.response}} </label>
+                            </div>
+                            <div *ngIf="isSubmitted[currentIndex] && !selected[currentIndex]" class="help-block">
+                                <div class="alert alert-danger">
+                                    <strong>Wrong answer</strong>
+                                </div>
+                            </div>
+                            <div *ngIf="isSubmitted[currentIndex] && selected[currentIndex]" class="help-block">
+                                <div class="alert alert-success">
+                                    <strong>Correct answer</strong>
+                                </div>
+                            </div>
+                            <button type="submit" (click)="submitForm()">Submit</button>
+                        </form>
+                    </div>
                 </div>
 
-                <form>
-                    <div *ngFor="let answer of current?.answers">
-                        <label>
-                            <input type="radio" name="name" (click)="changeSelected(answer.isCorrect)"
-                                [value]="answer._id">
-                            {{answer.response}} </label>
-                    </div>
-                    <div *ngIf="isSubmitted[currentIndex] && !selected[currentIndex]" class="help-block">
-                        <div class="alert alert-danger">
-                            <strong>Wrong answer</strong>
-                        </div>
-                    </div>
-                    <div *ngIf="isSubmitted[currentIndex] && selected[currentIndex]" class="help-block">
-                        <div class="alert alert-success">
-                            <strong>Correct answer</strong>
-                        </div>
-                    </div>
-                    <button type="submit" (click)="submitForm()">Submit</button>
-                </form>
-
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <button type="button" class="btn btn-primary" *ngIf="currentIndex"
                             (click)="previous()">Prev</button>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <button type="button" class="btn btn-primary" *ngIf="thereIsNext()"
                             (click)="next()">Next</button>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
